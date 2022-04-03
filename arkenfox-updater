@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+FIREFOX_PROFILE=/home/USER/.mozilla/firefox/PROFILE/
+OWNER=$(ls -ld $FIREFOX_PROFILE | awk '{print $3}')
+
+# Pacman will execute this script as root, so we deelevate privilages to the owner of the firefox profile folder
+
+runuser -l $OWNER -c '$FIREFOX_PROFILE/updater.sh -usb'
+runuser -l $OWNER -c 'cd $FIREFOX_PROFILE && ./prefsCleaner.sh'
+
