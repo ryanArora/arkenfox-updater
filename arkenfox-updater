@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
-FIREFOX_PROFILE=/home/USER/.mozilla/firefox/PROFILE/
+USR=${DOAS_USER-${SUDO_USER-$USER}}
+FIREFOX_PROFILE=/home/$USR/.mozilla/firefox/main/
 OWNER=$(ls -ld $FIREFOX_PROFILE | awk '{print $3}')
 
 # Pacman will execute this script as root, so we deelevate privilages to the owner of the firefox profile folder
